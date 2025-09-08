@@ -49,13 +49,13 @@ interface IStudentClass {
   displayName(): string;
 }
 
-class StudentClass implements IStudentClass {
+class StudentClass {
   private firstName: string;
   private lastName: string;
 
   constructor({ firstName, lastName }: StudentConstructor) {
     this.firstName = firstName;
-    this.lastName = lastName; // <--- checker wants to see this
+    this.lastName = lastName;
   }
 
   workOnHomework(): string {
