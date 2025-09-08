@@ -25,12 +25,16 @@ const director1: Director = {
 console.log(director1);
 
 
+
 interface printTeacherFunction {
-  (firstName: string, lastName: string): string;
+  (names: { firstName: string; lastName: string }): string;
 }
 
-function printTeacher(firstName: string, lastName: string): string {
-  return `${firstName.charAt(0)}. ${lastName}`;
-}
 
-console.log(printTeacher("John", "Doe"));
+const printTeacher: printTeacherFunction = ({ firstName, lastName }) => {
+  firstName = firstName.charAt(0); // make firstName the initial
+  return `${firstName}. ${lastName}`;
+};
+
+// Example
+console.log(printTeacher({ firstName: "John", lastName: "Doe" })); // J. Doe
