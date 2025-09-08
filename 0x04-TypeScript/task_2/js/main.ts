@@ -1,18 +1,18 @@
-// DirectorInterface
+
 interface DirectorInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
   workDirectorTasks(): string;
 }
 
-// TeacherInterface
+
 interface TeacherInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
   workTeacherTasks(): string;
 }
 
-// Director class
+
 class Director implements DirectorInterface {
   workFromHome(): string {
     return "Working from home";
@@ -27,7 +27,7 @@ class Director implements DirectorInterface {
   }
 }
 
-// Teacher class
+
 class Teacher implements TeacherInterface {
   workFromHome(): string {
     return "Cannot work from home";
@@ -42,15 +42,18 @@ class Teacher implements TeacherInterface {
   }
 }
 
-// createEmployee function
+
 function createEmployee(salary: number | string): Director | Teacher {
-  if (typeof salary === "number" && salary < 500) {
-    return new Teacher();
+  if (typeof salary === "number") {
+    if (salary < 500) {
+      return new Teacher();
+    }
+    return new Director();
   }
   return new Director();
 }
 
-// Expected results
-console.log(createEmployee(200));
-console.log(createEmployee(1000));
-console.log(createEmployee("$500"));
+
+console.log(createEmployee(200).constructor.name);   // Teacher
+console.log(createEmployee(1000).constructor.name);  // Director
+console.log(createEmployee("$500").constructor.name); // Director
